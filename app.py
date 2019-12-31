@@ -1,21 +1,24 @@
-import requests
-from bs4 import BeautifulSoup
-import re
+from 
 
-URL="https://www.apple.com/au/shop/buy-mac/macbook-pro/13-inch"
-TAG_NAME = "span"
-QUERY = {"class":"as-price-currentprice"}
 
-response = requests.get(URL)
-content = response = response.content
-soup = BeautifulSoup(content, "html.parser")
-element = soup.find(TAG_NAME, QUERY)
-string_price = element.text.strip()
+# import requests
+# from bs4 import BeautifulSoup
+# import re
 
-pattern = re.compile(r"(\d+,?\d*\.\d\d)") 
-match = pattern.search(string_price)
-found_price = match.group(1)
-without_commas = found_price.replace(",", "")
-price = float(without_commas)
+# URL="https://www.apple.com/au/shop/buy-mac/macbook-pro/13-inch"
+# TAG_NAME = "span"
+# QUERY = {"class":"as-price-currentprice"}
 
-print(price)
+# response = requests.get(URL)
+# content = response = response.content
+# soup = BeautifulSoup(content, "html.parser")
+# element = soup.find(TAG_NAME, QUERY)
+# string_price = element.text.strip()
+
+# pattern = re.compile(r"(\d+,?\d*\.\d\d)") 
+# match = pattern.search(string_price)
+# found_price = match.group(1)
+# without_commas = found_price.replace(",", "")
+# price = float(without_commas)
+
+# print(price)
