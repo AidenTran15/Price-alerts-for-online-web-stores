@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 URL="https://www.apple.com/au/shop/buy-mac/macbook-pro/13-inch"
 TAG_NAME = "span"
@@ -11,4 +12,10 @@ soup = BeautifulSoup(content, "html.parser")
 element = soup.find(TAG_NAME, QUERY)
 string_price = element.text.strip()
 
-print(string_price)
+pattern = re.compile(r"(\d+,?\d*\.\d\d)") 
+match = pattern.search(string_price)
+found_price = match.group(1)
+without_commas = found_price.replace(",", "")
+price = float(without_commas)
+
+print(price)
