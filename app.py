@@ -1,9 +1,14 @@
-from flask import Flask
-from learning import learning_blueprint
+import requests
+from bs4 import BeautifulSoup
 
-app =Flask(__name__)
+URL="https://www.apple.com/au/shop/buy-mac/macbook-pro/13-inch"
+TAG_NAME = "span"
+QUERY = {"class":"as-price-currentprice"}
 
-app.register_blueprint(learning_blueprint)
+response = requests.get(URL)
+content = response = response.content
+soup = BeautifulSoup(content, "html.parser")
+element = soup.find(TAG_NAME, QUERY)
+string_price = element.text.strip()
 
-if __name__ == '__main__':
-    app.run()
+print(string_price)
