@@ -9,3 +9,7 @@ class Database:
     @staticmethod
     def insert(collection: str, data: Dict):
         Database.DATABASE[collection].insert(data)
+
+    @staticmethod
+    def find(collection: str, query: Dict) -> pymongo.cursor:
+        return Database.DATABASE[collection]. find(query)

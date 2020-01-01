@@ -12,7 +12,7 @@ class Item:
         self.tag_name = tag_name 
         self.query = query
         self.price = None
-        self.collection = "item"
+        self.collection = "items"
         self._id = _id or uuid.uuid4().hex
 
     def __repr__(self):
@@ -39,6 +39,12 @@ class Item:
             "tag_name": self.tag_name,
             "query": self.query
         }
+
+    @classmethod
+    def all(cls):
+        items_from_db = Database.find("items", {})
+        return [Item(**item) for item in items_from_db]
+
 
     def save_to_mongo(self):
         Database.insert(self.collection, self.json())
