@@ -4,9 +4,12 @@ url = "https://www.apple.com/au/shop/buy-mac/macbook-pro/13-inch"
 tag_name = "span"
 query = {"as-price-currentprice"}
 
-item = Item(url, tag_name, query)
-a = item.load_price()
-print(a)
+ipad = Item(url, tag_name, query)
+ipad.save_to_mongo()
+
+items_loaded = Item.all()
+print(items_loaded)
+print(items_loaded[0].load_price())
 
 
 # import requests
