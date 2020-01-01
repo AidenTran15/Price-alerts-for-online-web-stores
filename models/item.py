@@ -3,6 +3,7 @@ import re
 import requests
 import uuid
 from bs4 import BeautifulSoup
+from common.database import Database
 
 
 class Item:
@@ -11,6 +12,7 @@ class Item:
         self.tag_name = tag_name 
         self.query = query
         self.price = None
+        self.collection = "item"
         self._id = _id or uuid.uuid4().hex
 
     def __repr__(self):

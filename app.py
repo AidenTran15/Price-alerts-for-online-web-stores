@@ -2,14 +2,14 @@ from models.item import Item
 
 url = "https://www.apple.com/au/shop/buy-mac/macbook-pro/13-inch"
 tag_name = "span"
-query = {"as-price-currentprice"}
+query = {"class": "as-price-currentprice"}
 
 ipad = Item(url, tag_name, query)
 ipad.save_to_mongo()
 
-items_loaded = Item.all()
-print(items_loaded)
-print(items_loaded[0].load_price())
+# items_loaded = Item.all()
+# print(items_loaded)
+# print(items_loaded[0].load_price())
 
 
 # import requests
