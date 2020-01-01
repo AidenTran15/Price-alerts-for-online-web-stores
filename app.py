@@ -1,4 +1,12 @@
-from 
+from models.item import Item
+
+url = "https://www.apple.com/au/shop/buy-mac/macbook-pro/13-inch"
+tag_name = "span"
+query = {"as-price-currentprice"}
+
+item = Item(url, tag_name, query)
+a = item.load_price()
+print(a)
 
 
 # import requests
