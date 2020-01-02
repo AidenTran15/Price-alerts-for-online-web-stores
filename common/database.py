@@ -13,3 +13,7 @@ class Database:
     @staticmethod
     def find(collection: str, query: Dict) -> pymongo.cursor:
         return Database.DATABASE[collection]. find(query)
+
+    @staticmethod
+    def find_one(collection: str, query: Dict) -> Dict:
+        return Database.DATABASE[collection].find_one(query)

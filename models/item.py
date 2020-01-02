@@ -7,7 +7,7 @@ from common.database import Database
 
 
 class Item:
-    def __init__(self, url: str, tag_name: str, query: Dict, _id: str =None):
+    def __init__(self, url: str, tag_name: str, query: Dict, _id: str = None):
         self.url = url
         self.tag_name = tag_name 
         self.query = query
@@ -40,11 +40,16 @@ class Item:
             "query": self.query
         }
 
-    @classmethod
-    def all(cls):
-        items_from_db = Database.find("items", {})
-        return [Item(**item) for item in items_from_db]
-
 
     def save_to_mongo(self):
         Database.insert(self.collection, self.json())
+
+    @classmethod
+    def get_by_id(cls, _id):
+        item_json = Database.find_one("items", {"_id": _id})
+        return cls(**item_json)
+
+    @classmethod
+    def all(cls):
+        items_from_db = Database.find("items", {})
+        return [cls(**item) for item in items_from_db]
