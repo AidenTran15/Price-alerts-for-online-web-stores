@@ -3,8 +3,8 @@ import re
 import requests
 import uuid
 from bs4 import BeautifulSoup
-from common.database import Database
 from models.model import Model
+from common.database import Database
 
 
 class Item(Model):
@@ -46,7 +46,7 @@ class Item(Model):
         Database.insert(self.collection, self.json())
 
     @classmethod
-    def get_by_id(cls, _id):
+    def get_by_id(cls, _id: str) -> "Item":
         item_json = Database.find_one("items", {"_id": _id})
         return cls(**item_json)
 
