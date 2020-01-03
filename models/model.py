@@ -4,7 +4,8 @@ from common.database import Database
 
 
 class Model(metaclass=ABCMeta):
-    colletion = "models"
+    colletion = str
+    _id: str
 
     def __init__(self, *args, **kwargs):
         pass
@@ -35,6 +36,6 @@ class Model(metaclass=ABCMeta):
     @classmethod
     def find_many_by(cls, attribute, value):
         return[cls(**elem) for elem in Database.find(cls.collection, {attribute: value})]
-        
+
 
 
