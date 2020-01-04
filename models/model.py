@@ -31,11 +31,11 @@ class Model(metaclass=ABCMeta):
         return [cls(**elem) for elem in elements_from_db]
         
     @classmethod
-    def fine_one_by(cls: type[T], attribute: str, value: str): # Item.find_one_by('url', 'https://bla.com')
+    def fine_one_by(cls: type[T], attribute: str, value: Union[str, Dict]) -> T: # Item.find_one_by('url', 'https://bla.com')
         return cls(**Database.find_one(cls.collection, {attribute: value}))
 
     @classmethod
-    def find_many_by(cls: Type[T], attribute: str, value: str) -> List[T]:
+    def find_many_by(cls: Type[T], attribute: str, value: Union[str, Dict]) -> List[T]:
         return[cls(**elem) for elem in Database.find(cls.collection, {attribute: value})]
 
 
