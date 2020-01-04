@@ -1,4 +1,4 @@
-from typing import List, TypeVar, Type
+from typing import List, Dict, TypeVar, Type
 from abc import ABCMeta, abstractmethod
 from common.database import Database
 
