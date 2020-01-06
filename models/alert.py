@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 @dataclass(eq=False)
 class Alert(Model):
     collection: str = field(init=False, default="alerts")
+    name: str
     item_id = str
     price_limit = float
     _id: str = field(default_factory=lambda: uuid.uuid4().hex)
@@ -20,8 +21,9 @@ class Alert(Model):
     def json(self) -> Dict:
         return {
             "_id": self._id,
+            "name":  self.name,
+            "item_id": self.item_id,
             "price_limit": self.price_limit,
-            "item_id": self.item_id
         }
 
  
