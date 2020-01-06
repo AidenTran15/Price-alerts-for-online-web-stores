@@ -1,27 +1,25 @@
 import uuid
 from typing import Dict
+from dataclasses import dataclass, field
 from models.model import Model
 import re
 
 
 class Store(Model):
-    collection = "stores"
+    collection: str = field(init=False, default="stores")
+    name: str
+    url_prefix: str
+    tag_name: str
+    query: Dict
+    _id: str = field(default_factory=lambda: uuid.uuid4().hex)
 
-    def __init__(self, name: str, url_prefix: str, tag_name: str, query: Dict, _id: str = None):
-        super().__init__()
-        self.name = name
-        self.url_prefix = url_prefix
-        self.tag_name = tag_name
-        self.query = query
-        self. _id = _id or uuid.uuid4().hex
-
-        def json(self) -> Dict:
-            return {
-                "_id": self.id,
-                "name": self.name,
-                "url_prefix": self.url_prefix,
-                "tag_name": self.tag_name,
-                "query": self.query
+    def json(self) -> Dict:
+        return {
+            "_id": self.id,
+            "name": self.name,
+            "url_prefix": self.url_prefix,
+            "tag_name": self.tag_name,
+            "query": self.query
             }
 
     @classmethod
