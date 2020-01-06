@@ -13,12 +13,8 @@ class Item(Model):
     url: str
     tag_name: str
     query: Dict
+    price: float = field(default=None)
     _id: str = field(default_factory=lambda: uuid.uuid4())
-
-
-    def __post_init__(self):
-        self.price = None
-        
 
     def load_price(self) -> float:
         response = requests.get(self.url)
@@ -39,6 +35,7 @@ class Item(Model):
             "_id": self._id,
             "url": self.url,
             "tag_name": self.tag_name,
+            "price": self.price,
             "query": self.query
         }
 
