@@ -12,8 +12,11 @@
             <p>
                 For URLs starting with {{ store.url_prefix }}
             </p>
-            <a class="btn btn-primary" href="{{ url_for('store.edit_store', store_id=store._id) }}">
+            <a class="btn btn-primary" href="{{ url_for('store.delete_store', store_id=store._id) }}">
                 Edit
+            </a>
+            <a class="btn btn-danger" href="{{ url_for('store.edit_store', store_id=store._id) }}">
+                permanent delete
             </a>
         </div>
         {% endfor %}
