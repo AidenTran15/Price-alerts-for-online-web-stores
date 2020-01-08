@@ -13,6 +13,11 @@
                     <a href="{{alert.item.url}}">{{ alert.item.url }} { last price ${{ alert.price }})</a>
                 </p>
                 <a class="btn btn-secondary" href="{{ url_for('alerts.edit_alert', alert_id=alert._id) }}">
+                    Edit
+                </a>
+                 <a class="btn btn-danger" href="{{ url_for('alerts.delete_alert', alert_id=alert._id) }}">
+                    Permanently delete
+                </a>
             </div>
         {% endfor %}
     </div>
